@@ -9,8 +9,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-outfit)', ...fontFamily.sans],
+        primary: ['var(--outfit-font)', ...fontFamily.sans],
+        serif: ['var(--outfit-font)', ...fontFamily.serif],
       },
+
     },
   },
   plugins: [],
