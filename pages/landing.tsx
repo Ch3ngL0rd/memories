@@ -50,7 +50,8 @@ export default function Landing() {
                     {posts.slice(0, 4).map((currentPost, idx) => {
                         const randomWidth = 60 + ((seed + idx * idx ** 2) ** 2) % 30;
                         return (
-                            <div className="relative flex flex-row justify-end" key={currentPost.title}>
+                            <Link className="relative flex flex-row justify-end" key={currentPost.title}
+                            href={currentPost.link}>
                                 <img
                                     ref={(el) => photoRefs.current[idx] = el!}
                                     onMouseEnter={(el) => handleHover(el.currentTarget, currentPost)}
@@ -63,14 +64,15 @@ export default function Landing() {
                                         :
                                         <></>
                                 }
-                            </div>)
+                            </Link>)
                     })}
                 </div>
                 <div className="flex flex-col w-full items-start">
                     {posts.slice(4,).map((currentPost, idx) => {
                         const randomWidth = 60 + ((seed + idx * idx ** 2) ** 2) % 30;
                         return (
-                            <div className="relative flex flex-row justify-start" key={currentPost.title}>
+                            <Link className="relative flex flex-row justify-start" key={currentPost.title}
+                            href={currentPost.link}>
                                 <img
                                     ref={(el) => photoRefs.current[idx + 4] = el!}
                                     onMouseEnter={(el) => handleHover(el.currentTarget, currentPost)}
@@ -83,7 +85,7 @@ export default function Landing() {
                                         :
                                         <></>
                                 }
-                            </div>
+                            </Link>
                         )
                     })}
                 </div>

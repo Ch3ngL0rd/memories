@@ -5,5 +5,6 @@ export interface Post {
     entry: string,
     image: string,
     caption: string,
+    link : string,
 }
 
