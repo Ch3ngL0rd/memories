@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import styles from '../styles/Landing.module.css'
+import styles from "../styles/Landing.module.css";
 import posts from "../src/landingPosts";
 import { Post } from "../src/interface";
 
@@ -46,7 +46,6 @@ export default function Landing() {
                 onMouseLeave={handleHoverExit}>
                 <div
                     className="flex flex-col w-full items-end relative top-[-10rem]"
-
                 >
                     {posts.slice(0, 4).map((currentPost, idx) => {
                         const randomWidth = 60 + ((seed + idx * idx ** 2) ** 2) % 30;
@@ -55,7 +54,7 @@ export default function Landing() {
                                 <img
                                     ref={(el) => photoRefs.current[idx] = el!}
                                     onMouseEnter={(el) => handleHover(el.currentTarget, currentPost)}
-                                    src={`${currentPost.image}.jpg`} className={`object-cover py-1 px-1 relative`} 
+                                    src={`${currentPost.image}.jpg`} className={`object-cover py-1 px-1 relative`}
                                     style={{ width: `${randomWidth}%` }}
                                 />
                                 {
@@ -76,7 +75,7 @@ export default function Landing() {
                                     ref={(el) => photoRefs.current[idx + 4] = el!}
                                     onMouseEnter={(el) => handleHover(el.currentTarget, currentPost)}
                                     src={`${currentPost.image}.jpg`} className={`object-cover py-1 px-1`}
-                                style={{ width: `${randomWidth}%` }}
+                                    style={{ width: `${randomWidth}%` }}
                                 />
                                 {
                                     post === currentPost ?
@@ -90,20 +89,28 @@ export default function Landing() {
                 </div>
             </div>
             <div className="col-span-3 flex flex-col justify-center items-end mr-10">
-                <div className="flex flex-col w-full">
-                    {
-                        (isHover === true) ?
-                            <>
-                                <h1 className="xl:text-7xl md:text-6xl text-start font-light"
-                                    style={{ lineHeight: 1.25, letterSpacing: '-0.005em' }}>{post?.title}</h1>
-                                <p className="text-base text-start mt-6 font-light">{post?.entry}</p>
-                            </>
-                            :
-                            <>
-                                <h1 className="xl:text-7xl md:text-6xl text-end font-light" style={{ lineHeight: 1.25 }}> Memory<br />of<br />Yesterday</h1>
-                                <p className="text-base text-end mt-6 font-light">dedicated to my friends & family<br />by zachary cheng</p>
-                            </>
-                    }
+                <div className="flex flex-col w-full relative justify-center">
+                    <div
+                        style={{
+                            position: 'absolute',
+                            transition: "opacity 0.5s ease-in-out 0s, scale 0.5s ease-in-out 0s",
+                            scale: isHover ? "1" : "1.2",
+                            opacity: isHover ? "1" : "0",
+                        }}>
+                        <h1 className="xl:text-7xl md:text-6xl text-start font-light"
+                            style={{ lineHeight: 1.25, letterSpacing: '-0.005em' }}>{post?.title}</h1>
+                        <p className="text-base text-start mt-6 font-light leading-8">{post?.entry}</p>
+                    </div>
+                    <div
+                        style={{
+                            visibility: "visible",
+                            transition: "opacity 0.5s ease-in-out 0s, scale 0.5s ease-in-out 0s",
+                            scale: isHover ? "0.80" : "1",
+                            opacity: isHover ? "0" : "1",
+                        }}>
+                        <h1 className="xl:text-7xl md:text-6xl text-end font-light" style={{ lineHeight: 1.25 }}> Memory<br />of<br />Yesterday</h1>
+                        <p className="text-base text-end mt-6 font-light">dedicated to my friends & family<br />by zachary cheng</p>
+                    </div>
                 </div>
             </div >
             <footer className="absolute bottom-5 right-10 flex justify-between w-40">
