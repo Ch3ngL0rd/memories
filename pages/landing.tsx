@@ -41,7 +41,7 @@ export default function Landing() {
     }, [photoRefs])
 
     return (
-        <div className="grid grid-cols-10 h-screen overflow-hidden">
+        <div className="grid grid-cols-10 h-screen overflow-hidden font-primary">
             <div className="col-span-7 flex flex-row justify-center h-screen"
                 onMouseLeave={handleHoverExit}>
                 <div
@@ -114,8 +114,8 @@ export default function Landing() {
                 </div>
             </div >
             <footer className="absolute bottom-5 right-10 flex justify-between w-40">
-                <Link href={""}>Home</Link>
-                <Link href={""}>About</Link>
+                <Link href={"/landing"}>LANDING</Link>
+                <Link href={"/about"}>ABOUT</Link>
             </footer>
         </div >
     )
