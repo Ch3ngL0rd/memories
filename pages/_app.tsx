@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <style jsx global>
         {`
       :root {
-        --lora-font: ${outfit.style.fontFamily};
+        --outfit-font: ${outfit.style.fontFamily};
       }
     `}
       </style>
