@@ -65,26 +65,28 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
                 </div>
             </div>
             <Navbar username={journal.expand.creator.username} />
-            {text.map((text, idx) => {
-                if (idx < images.length) {
+            <div className='min-h-[80vh] flex justify-center align-center flex-col'>
+                {text.map((text, idx) => {
+                    if (idx < images.length) {
+                        return (
+                            <div className="flex align-center justify-center h-[50vh] my-10 mx-40" key={images[idx].id}
+                                style={{ flexDirection: idx % 2 === 0 ? 'row-reverse' : "row" }}>
+                                <img
+                                    className="object-contain max-w-[40%]"
+                                    src={`http://127.0.0.1:8090/api/files/${images[idx].collectionId}/${images[idx].id}/${images[idx].photo}`} />
+                                <p className=" leading-[200%] font-light flex flex-col justify-center mx-10 text-lg">
+                                    {text}
+                                </p>
+                            </div>
+                        )
+                    }
                     return (
-                        <div className="flex align-center justify-center h-[50vh] my-10 mx-40" key={images[idx].id}
-                            style={{ flexDirection: idx % 2 === 0 ? 'row-reverse' : "row" }}>
-                            <img
-                                className="object-contain max-w-[40%]"
-                                src={`http://127.0.0.1:8090/api/files/${images[idx].collectionId}/${images[idx].id}/${images[idx].photo}`} />
-                            <p className=" leading-[200%] font-light flex flex-col justify-center mx-10 text-lg">
-                                {text}
-                            </p>
+                        <div className="leading-[200%] font-light flex flex-col justify-center mx-40 text-lg text-center" key={idx}>
+                            <p>{text}</p>
                         </div>
-                    )
-                }
-                return (
-                    <div className="leading-[200%] font-light flex flex-col justify-center mx-40 text-lg text-center" key={idx}>
-                        <p>{text}</p>
-                    </div>
-                );
-            })}
+                    );
+                })}
+            </div>
             <div>
                 <p className="text-center text-sm pb-6">{journal.title} - {date}</p>
             </div>

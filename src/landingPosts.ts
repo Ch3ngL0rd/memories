@@ -8,7 +8,7 @@ const posts: Post[] = [
         entry: "Two Zacs having fun at the clubs",
         image: "/doubletrouble",
         caption: "I have no clue where this is",
-        journal_id: "v51hjxbut1co8np"
+        journal_id: "ykx02m8j8shei5e"
     } as Post,
     {
         event: "MSU Ball",
@@ -44,7 +44,7 @@ const posts: Post[] = [
         entry: "During exam season this year, hopping on with my siblings and cousins to a private realm and building all sorts of cool stuff together was too much fun. I especially remember when we (mostly me and cat) built that cool house (seen behind), and when we blew up my brother's base (sorry not sorry). And even though we never quite made it to the ender dragon, those were some of the most fun gaming sessions I've ever had.",
         image: "/chengcraft",
         caption: "We blew up Caleb's base",
-        journal_id: "v51hjxbut1co8np"
+        journal_id: "6knkgd10ycmys2w"
     } as Post,
     {
         event: "MSU Dodgeball Tournament",
@@ -53,15 +53,6 @@ const posts: Post[] = [
         entry: "Fond memories of participating in the yearly dodgeball tournament at MSU during my first semester. It was a blast throwing my balls with Eric, Calvin, Matt, Harry, and Jeremy. I can’t wait for the tournament next year - we can’t come last three years in a row!",
         image: "/shhhh",
         caption: "Shhhhhh!",
-        journal_id: "v51hjxbut1co8np"
-    } as Post,
-    {
-        event: "Soccer",
-        date: new Date("6/23/2022"),
-        title: "SUIIIIIIII",
-        entry: "My dad and I at the soccer game. I'm clueless at soccer but it was lots of fun!",
-        image: "/soccer",
-        caption: "SUIIIIII!",
         journal_id: "v51hjxbut1co8np"
     } as Post,
     {
