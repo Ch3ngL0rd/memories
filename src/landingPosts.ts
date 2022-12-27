@@ -14,7 +14,7 @@ const posts: Post[] = [
         event: "MSU Ball",
         date: new Date("10/19/2022"),
         title: "MSU Ball",
-        entry: "Dapper in our suits and elegant in our dresses, we all look so handsome and beautiful. What a magical night.",
+        entry: "Dapper in our suits and elegant in our dresses. What a magical night.",
         image: "/familyphoto",
         caption: "Family Photo!",
         journal_id: "2m1c4a79t393611"

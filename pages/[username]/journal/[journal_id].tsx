@@ -34,7 +34,7 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
 
     const cover_image = journal.expand.cover_image;
     const unfiltered_images = journal.expand["photos(journal_id)"] !== undefined ? journal.expand["photos(journal_id)"] : [];
-    const images = unfiltered_images.filter((image: { id: string }) => image.id !== cover_image.id);
+    const images = unfiltered_images.filter((image: { id: string }) => image.id !== cover_image?.id);
     const text = journal.entry.split('\n');
     const date = new Date(journal.expand.event_id.start_date.split(" ")[0]).toLocaleDateString(
         "en-US", { day: 'numeric', month: 'long', year: 'numeric' }
