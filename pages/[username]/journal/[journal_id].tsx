@@ -4,21 +4,9 @@ import React from 'react';
 import Navbar from '../../../src/Navbar';
 import Link from 'next/link';
 import { pb } from '../../../src/pocketbase_config';
+import { Journal } from '../../../src/interface';
 
-interface Journal {
-    collectionId: string,
-    collectionName: string,
-    cover_image: string,
-    created: string,
-    creator: string,
-    date: string,
-    entry: string,
-    event_id: string,
-    id: string,
-    title: string,
-    updated: string,
-    expand: any,
-}
+
 
 export default function JournalPage({ journal }: { journal: Journal | null }) {
     const router = useRouter()

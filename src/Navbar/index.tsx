@@ -37,7 +37,7 @@ export default function Navbar({ username }: { username: string | null }) {
             <div onClick={handleProfile} className="cursor-pointer">
                 <p className='-rotate-90'>PROFILE</p>
             </div>
-            <Link href={"../../home"}><p className='-rotate-90'>HOME</p></Link>
+            <Link href={"/landing"}><p className='-rotate-90'>LANDING</p></Link>
         </div>
     )
 }
