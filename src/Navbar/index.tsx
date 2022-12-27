@@ -30,14 +30,15 @@ export default function Navbar({ username }: { username: string | null }) {
             router.push(`../../${username}`)
         }
     }
-
+    //  py-10
     return (
-        <div className='fixed top-0 left-0 border-r border-black w-min h-screen bg-white flex flex-col justify-between py-10'>
-            <p className='-rotate-90 cursor-pointer' onClick={handleBack}>BACK</p>
-            <div onClick={handleProfile} className="cursor-pointer">
-                <p className='-rotate-90'>PROFILE</p>
-            </div>
-            <Link href={"/landing"}><p className='-rotate-90'>LANDING</p></Link>
+        <div className='fixed top-0 left-0 w-min h-full bg-white border-black flex flex-col justify-between py-10'
+            style={{ paddingTop: "2.5rem", paddingBottom: "2.5rem", borderRightWidth: '2px' }}>
+            <p className='cursor-pointer' onClick={handleBack} style={{transform:"rotate(-90deg)"}}>BACK</p>
+            <p className='cursor-pointer' onClick={handleProfile} style={{transform:"rotate(-90deg)"}}>PROFILE</p>
+            <Link href={"/landing"} style={{transform:"rotate(-90deg)"}}>
+                <p>LANDING</p>
+            </Link>
         </div>
     )
 }
