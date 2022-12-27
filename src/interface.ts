@@ -5,5 +5,6 @@ export interface Post {
     entry: string,
     image: string,
     caption: string,
+    journal_id : string,
 }
 

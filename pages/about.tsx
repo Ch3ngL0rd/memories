@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+
 export default function About() {
     return (
         <div className="grid grid-cols-8 h-screen w-full font-primary">
@@ -7,7 +7,9 @@ export default function About() {
             <div className="col-span-8 md:col-span-4 flex justify-start flex-col h-screen align-center mx-10">
                 <h1 className="xl:text-5xl text-3xl text-center font-semibold my-10">About</h1>
                 <div className="leading-8 my-10 font-light">
-                    <p>One small thing that brings me a lot of joy is the "year ago" feature on Snapchat.
+                    <p>
+
+                        One small thing that brings me a lot of joy is the "year ago" feature on Snapchat.
                         Every time I see a memory from a year ago, it reminds me of where I was at that time,
                         the challenges I've faced since then, the happiness I've experienced, and the friendships I've made.
                         It's a really powerful way to reflect on my journey over the past year.
@@ -20,14 +22,16 @@ export default function About() {
                         <br /><br />
                     </p>
                     <div className="text-center">
-                        <p>That's the goal of this project – to create a<br/>
+                        <p>
+                            That's the goal of this project – to create a<br />
                             <b className="font-semibold"> meaningful and interactive way to keep track of our memories.</b>
                         </p>
                     </div>
                 </div>
             </div>
-            <footer className="fixed bottom-5 right-10 flex justify-end w-40">
+            <footer className="fixed bottom-5 right-10 flex justify-between w-40">
                 <Link href={"/landing"}>LANDING</Link>
+                <Link href={"/about"}>ABOUT</Link>
             </footer>
         </div >
     )
