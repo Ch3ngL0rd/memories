@@ -1,8 +1,8 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router'
 import PocketBase from 'pocketbase';
 import React from 'react';
-import Balancer from 'react-wrap-balancer'
+import Navbar from '../../../src/Navbar';
+import Link from 'next/link';
 
 const pb = new PocketBase('http://127.0.0.1:8090');
 
@@ -23,7 +23,7 @@ interface Journal {
 
 export default function JournalPage({ journal }: { journal: Journal | null }) {
     const router = useRouter()
-    const { username, journal_id } = router.query;
+    const { journal_id } = router.query;
 
     if (journal === null) {
         return (
@@ -33,20 +33,6 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
         )
     }
 
-    const [scrollPos, setScrollPos] = React.useState<number>(0);
-
-    // Use the useEffect hook to update the scroll position when the user scrolls
-    React.useEffect(() => {
-        function handleScroll() {
-            setScrollPos(window.scrollY / window.screen.height);
-            console.log(window.scrollY);
-
-            console.log(scrollPos);
-        }
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     const cover_image = journal.expand.cover_image;
     const unfiltered_images = journal.expand["photos(journal_id)"] !== undefined ? journal.expand["photos(journal_id)"] : [];
     const images = unfiltered_images.filter((image: { id: string }) => image.id !== cover_image.id);
@@ -54,14 +40,6 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
     const date = new Date(journal.expand.event_id.start_date.split(" ")[0]).toLocaleDateString(
         "en-US", { day: 'numeric', month: 'long', year: 'numeric' }
     );
-
-    const handleBack = () => {
-        router.back()
-    }
-
-    const handlePhoto = () => {
-        router.push(`../photos/${journal_id}`);
-    }
 
     return (
         <div className="relative font-primary">
@@ -86,11 +64,7 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
                     >by {journal.expand.creator.name}</p>
                 </div>
             </div>
-            <div className='fixed top-0 left-0 border-r border-black w-min h-screen bg-white flex flex-col justify-between py-10'>
-                <p className='-rotate-90 cursor-pointer' onClick={handleBack}>BACK</p>
-                <Link href={`../../${journal.expand.creator.username}`}><p className='-rotate-90'>PROFILE</p></Link>
-                <Link href={"../../home"}><p className='-rotate-90'>HOME</p></Link>
-            </div>
+            <Navbar username={journal.expand.creator.username} />
             {text.map((text, idx) => {
                 if (idx < images.length) {
                     return (
@@ -114,13 +88,15 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
             <div>
                 <p className="text-center text-sm pb-6">{journal.title} - {date}</p>
             </div>
-            <div className='flex flex-row justify-center align-center absolute bottom-0 right-0 mr-6 pb-6 cursor-pointer'
-                onClick={handlePhoto}>
-                <p className="text-center text-2xl mr-2" >PHOTOS</p>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-            </div>
+
+            <Link href={`../photos/${journal_id}`}>
+                <div className='flex flex-row justify-center align-center absolute bottom-0 right-0 mr-6 pb-6 cursor-pointer'>
+                    <p className="text-center text-2xl mr-2" >PHOTOS</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                </div>
+            </Link>
         </div>
     )
 }
