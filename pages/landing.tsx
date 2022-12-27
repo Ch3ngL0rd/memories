@@ -51,7 +51,7 @@ export default function Landing() {
                         const randomWidth = 60 + ((seed + idx * idx ** 2) ** 2) % 30;
                         return (
                             <Link className="relative flex flex-row justify-end" key={currentPost.title}
-                            href={currentPost.link}>
+                                href={`xX_Ch3ngL0rd_Xx/journal/${currentPost.journal_id}`}>
                                 <img
                                     ref={(el) => photoRefs.current[idx] = el!}
                                     onMouseEnter={(el) => handleHover(el.currentTarget, currentPost)}
@@ -60,7 +60,8 @@ export default function Landing() {
                                 />
                                 {
                                     post === currentPost ?
-                                        <p className="absolute bottom-2 right-2 mr-1 text-lg text-white pointer-events-none font-medium">{currentPost.caption.toLowerCase()}</p>
+                                        <p className="absolute bottom-2 right-2 mr-1 text-lg text-white pointer-events-none font-medium"
+                                            style={{ textShadow: "1.5px 1.5px #000000" }}>{currentPost.caption.toLowerCase()}</p>
                                         :
                                         <></>
                                 }
@@ -72,7 +73,7 @@ export default function Landing() {
                         const randomWidth = 60 + ((seed + idx * idx ** 2) ** 2) % 30;
                         return (
                             <Link className="relative flex flex-row justify-start" key={currentPost.title}
-                            href={currentPost.link}>
+                                href={`xX_Ch3ngL0rd_Xx/journal/${currentPost.journal_id}`}>
                                 <img
                                     ref={(el) => photoRefs.current[idx + 4] = el!}
                                     onMouseEnter={(el) => handleHover(el.currentTarget, currentPost)}
@@ -81,7 +82,8 @@ export default function Landing() {
                                 />
                                 {
                                     post === currentPost ?
-                                        <p className="absolute bottom-2 left-2 mr-1 text-lg text-white pointer-events-none font-medium">{currentPost.caption.toLowerCase()}</p>
+                                        <p className="absolute bottom-2 left-2 mr-1 text-lg text-white pointer-events-none font-medium"
+                                            style={{ textShadow: "1.5px 1.5px #000000" }}>{currentPost.caption.toLowerCase()}</p>
                                         :
                                         <></>
                                 }
