@@ -3,8 +3,7 @@ import PocketBase from 'pocketbase';
 import React from 'react';
 import Navbar from '../../../src/Navbar';
 import Link from 'next/link';
-
-const pb = new PocketBase('http://127.0.0.1:8090');
+import { pb } from '../../../src/pocketbase_config';
 
 interface Journal {
     collectionId: string,

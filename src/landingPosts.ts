@@ -20,10 +20,10 @@ const posts: Post[] = [
         journal_id: "2m1c4a79t393611"
     } as Post,
     {
-        event: "Chengs go North",
+        event: "Car Trip up North!",
         date: new Date("6/25/2022"),
-        title: "The Chengs go North",
-        entry: "So much fun going up north on our first family trip to Exmouth. Sucks to be stuck sitting in the middle.",
+        title: "Car Trip up North!!",
+        entry: "It was so much fun going on that family trip to Carnarvon! Sucks to be stuck sitting in the middle.",
         image: "/cartrip",
         caption: "The middle seat sucks",
         journal_id: "dj31ol82643zijb"
