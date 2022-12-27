@@ -17,16 +17,16 @@ const posts: Post[] = [
         entry: "Dapper in our suits and elegant in our dresses, we all look so handsome and beautiful. What a magical night.",
         image: "/familyphoto",
         caption: "Family Photo!",
-        journal_id: "v51hjxbut1co8np"
+        journal_id: "2m1c4a79t393611"
     } as Post,
     {
-        event: "Carnavron Car Trip",
+        event: "Car Trip up North!",
         date: new Date("6/25/2022"),
-        title: "Car Trip to Carnavron!",
+        title: "Car Trip up North!!",
         entry: "It was so much fun going on that family trip to Carnarvon! Sucks to be stuck sitting in the middle.",
         image: "/cartrip",
         caption: "The middle seat sucks",
-        journal_id: "v51hjxbut1co8np"
+        journal_id: "dj31ol82643zijb"
     } as Post,
     {
         event: "Family Photo",
@@ -35,7 +35,7 @@ const posts: Post[] = [
         entry: "That night our whole family went clubbing together (except for my sister who is still 17). Such a fun night and this photo captures it perfectly. Counting down the days until you turn 18! Can't wait for you to join us on these kinds of outings.",
         image: "/awnoemily",
         caption: "Say Cheese!",
-        journal_id: "v51hjxbut1co8np"
+        journal_id: "dhdzotn3l12ur3v"
     } as Post,
     {
         event: "ChengCraft",
@@ -62,7 +62,7 @@ const posts: Post[] = [
         entry: "Me at my clarinet recital! Man, it was such a nerve-wracking experience, but so amazing. I'll never forget the feeling of performing in front of all those people. And a big shout out to my clarinet teacher, Mrs Bex, for helping me get to that point. It truly was a once in a lifetime experience.",
         image: "/warrior",
         caption: "Watch out for my nun-chucks",
-        journal_id: "v51hjxbut1co8np"
+        journal_id: "1s6fb4b9dfotd36"
     } as Post,
 ]
 
