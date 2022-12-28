@@ -59,17 +59,18 @@ export default function Photo({ photo }: { photo: Photo | null }) {
                 <div className="relative"
                     style={{
                         transition: "left 0.8s ease-in-out",
-                        left: isHover ? "0%" : "30%",
+                        left: isHover ? "0%" : "50%",
                     }}
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}>
                     <div className="absolute right-0 bottom-0 max-w-[33%] mb-4 mr-4 py-4 px-4 bg-white border-black border-2">
-                        <h1 className="text-3xl text-end text-black font-medium"
-                        >{photo.caption}</h1>
-                        <Link href={journal_route}><p className="text-2xl text-end text-black font-light underline"
-                        >"{photo.expand.journal_id.title}"</p></Link>
-                        <p className="text-2xl text-end text-black font-light"
-                        >by {username}</p>
+                        <Balancer>
+                            <h1 className="text-3xl text-end text-black font-medium">{photo.caption}</h1>
+                        </Balancer>
+                        <Link href={journal_route}>
+                            <p className="text-2xl text-end text-black font-light underline">"{photo.expand.journal_id.title}"</p>
+                        </Link>
+                        <p className="text-2xl text-end text-black font-light">by {username}</p>
                     </div>
                 </div>
 
