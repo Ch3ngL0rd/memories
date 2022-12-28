@@ -35,3 +35,15 @@ export interface User {
     username: string,
     expand: any,
 }
+
+export interface Image {
+    caption: string,
+    collectionId: string,
+    collectionName: string,
+    created: string,
+    expand: any,
+    id: string,
+    journal_id: string,
+    photo: string,
+    updated: string,
+}
