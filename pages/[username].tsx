@@ -75,7 +75,7 @@ export default function Profile({ user, journals }: { user: User | null, journal
                                     <div
                                         className="text-end mr-4 pb-4"
                                         key={idx}
-                                        style={{ opacity: "0.3", transition: "opacity 0.2s ease-in-out" }}
+                                        style={{ opacity: "0.3", transition: "opacity 0.4s ease-in-out" }}
                                         ref={(el) => divRefs.current[idx] = el!}
                                         onMouseEnter={(el) => {
                                             handleHover(el.currentTarget)
