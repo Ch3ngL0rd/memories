@@ -42,6 +42,7 @@ export default function Photo({ photo }: { photo: Photo | null }) {
             </>
         )
     }
+    
     const username = photo.expand.journal_id.expand.creator.username;
     const journal_route = `../../../../${username}/journal/${photo.expand.journal_id.id}`;
     return (

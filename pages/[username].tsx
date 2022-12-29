@@ -6,6 +6,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function Profile({ user, journals }: { user: User | null, journals: { items: Journal[] } | null }) {
+    const divRefs = React.useRef<HTMLDivElement[]>([]);
+    const [hover, setHover] = React.useState<boolean>(false);
+    const [coverImage, setCoverImage] = React.useState<Image | null>(null);
     const router = useRouter()
     const { username } = router.query;
     if (user === null) {
@@ -13,17 +16,15 @@ export default function Profile({ user, journals }: { user: User | null, journal
             <>
                 <Navbar username={null} />
                 <div className="flex flex-col justify-center items-center h-screen w-full font-primary text-4xl text-center">
-                    <p>SORRY<br/>{username} NOT FOUND</p>
-                    <br/>
+                    <p>SORRY<br />{username} NOT FOUND</p>
+                    <br />
                     <Link href={"./landing"} className="underline">LANDING</Link>
                 </div>
             </>
         )
     }
 
-    const divRefs = React.useRef<HTMLDivElement[]>([]);
-    const [hover, setHover] = React.useState<boolean>(false);
-    const [coverImage, setCoverImage] = React.useState<Image | null>(null);
+
     console.log(user, journals);
     console.log(journals?.items)
 
