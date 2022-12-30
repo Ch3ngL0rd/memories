@@ -30,6 +30,7 @@ export default function Navbar({ username }: { username: string | null }) {
             router.push(`../../${username}`)
         }
     }
+
     //  py-10
     return (
         <div className='fixed top-0 left-0 w-min h-full bg-white border-black flex flex-col justify-between py-10'

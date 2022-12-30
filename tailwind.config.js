@@ -12,6 +12,15 @@ module.exports = {
         primary: ['var(--outfit-font)', ...fontFamily.sans],
         serif: ['var(--outfit-font)', ...fontFamily.serif],
       },
+      animation: {
+        'scrollAnimation': 'scroll 10s linear infinite',
+      },
+      keyframes: {
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(calc(-100%))' },
+        }
+      }
 
     },
   },
