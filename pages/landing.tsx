@@ -102,7 +102,7 @@ export default function Landing() {
                             opacity: isHover ? "1" : "0",
                         }}>
                         <h1 className="xl:text-7xl md:text-6xl text-start font-light"
-                            style={{ lineHeight: 1.25, letterSpacing: '-0.005em' }}>{post?.title}</h1>
+                            style={{ lineHeight: 1.25, letterSpacing: '-0.05em' }}>{post?.title}</h1>
                         <p className="text-base text-start mt-6 font-light leading-8">{post?.entry}</p>
                     </div>
                     <div

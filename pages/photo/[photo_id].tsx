@@ -27,21 +27,22 @@ export default function Photo({ photo }: { photo: Photo | null }) {
                 <Navbar username={null} />
                 <div className="w-screen h-screen flex flex-col justify-center items-center">
                     <Balancer>
-                        <h1 className="text-3xl text-center text-black font-light">
+                        <h1 className="text-3xl text-black font-light">
                             Sorry, we couldn't find your photo.
-                            <br /><br />
+                            <br/><br/>
                             Check that the link is correct and you have been given permissions to view the photo.
                         </h1>
                     </Balancer>
                     <br /><br />
                     <Link href={"../../home"}>
                         <h1
-                            className="text-3xl text-center text-black font-light underline cursor-pointer">Go Home</h1>
+                            className="text-3xl text-black font-light underline cursor-pointer">Go Home</h1>
                     </Link>
                 </div>
             </>
         )
     }
+
     const username = photo.expand.journal_id.expand.creator.username;
     const journal_route = `../../../../${username}/journal/${photo.expand.journal_id.id}`;
     return (

@@ -6,26 +6,31 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function Profile({ user, journals }: { user: User | null, journals: { items: Journal[] } | null }) {
+    const divRefs = React.useRef<HTMLDivElement[]>([]);
+    const [hover, setHover] = React.useState<boolean>(false);
+    const [coverImage, setCoverImage] = React.useState<Image | null>(null);
     const router = useRouter()
     const { username } = router.query;
+
     if (user === null) {
         return (
             <>
                 <Navbar username={null} />
                 <div className="flex flex-col justify-center items-center h-screen w-full font-primary text-4xl text-center">
-                    <p>SORRY<br/>{username} NOT FOUND</p>
-                    <br/>
-                    <Link href={"./landing"} className="underline">LANDING</Link>
+                    <p>SORRY<br />{username} NOT FOUND</p>
+                    <br />
+                    <div className="cursor-pointer" onClick={router.back}>
+                        <h1
+                            className="text-3xl text-black font-light underline">Back</h1>
+                    </div>
                 </div>
             </>
         )
     }
 
-    const divRefs = React.useRef<HTMLDivElement[]>([]);
-    const [hover, setHover] = React.useState<boolean>(false);
-    const [coverImage, setCoverImage] = React.useState<Image | null>(null);
-    console.log(user, journals);
-    console.log(journals?.items)
+    React.useEffect(() => {
+        console.log(coverImage);
+    }, [coverImage])
 
     const handleHover = (element: HTMLDivElement) => {
         setHover(true);
@@ -57,7 +62,7 @@ export default function Profile({ user, journals }: { user: User | null, journal
                 style={{ marginLeft: "5vw", width: "95vw" }}>
                 <div className="grid grid-cols-9">
                     <div className="col-span-4 w-full h-screen flex flex-col justify-center items-center">
-                        <img src={coverImage !== null ? `http://127.0.0.1:8090/api/files/${coverImage.collectionId}/${coverImage.id}/${coverImage.photo}` : ""}
+                        <img src={coverImage !== null ? `http://127.0.0.1:8090/api/files/${coverImage?.collectionId}/${coverImage?.id}/${coverImage?.photo}` : ""}
                             className="fixed aspect-square h-1/2 object-cover"
                             style={{
                                 opacity: hover === true ? "1" : "0",
@@ -79,7 +84,11 @@ export default function Profile({ user, journals }: { user: User | null, journal
                                         ref={(el) => divRefs.current[idx] = el!}
                                         onMouseEnter={(el) => {
                                             handleHover(el.currentTarget)
-                                            setCoverImage(journal.expand.cover_image);
+                                            if (journal.expand.cover_image !== undefined) {
+                                                setCoverImage(journal.expand.cover_image);
+                                            } else {
+                                                setCoverImage(null);
+                                            }
                                         }
                                         }
                                         onMouseLeave={handleExit}

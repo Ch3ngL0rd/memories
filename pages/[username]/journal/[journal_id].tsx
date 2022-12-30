@@ -1,12 +1,9 @@
 import { useRouter } from 'next/router'
-import PocketBase from 'pocketbase';
 import React from 'react';
 import Navbar from '../../../src/Navbar';
 import Link from 'next/link';
 import { pb } from '../../../src/pocketbase_config';
 import { Journal } from '../../../src/interface';
-
-
 
 export default function JournalPage({ journal }: { journal: Journal | null }) {
     const router = useRouter()
@@ -28,9 +25,13 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
         "en-US", { day: 'numeric', month: 'long', year: 'numeric' }
     );
 
+    if (images.length == 0) {
+
+    }
+
     return (
         <div className="relative font-primary">
-            <div className='w-full h-screen relative'>
+            <div className='w-full h-screen relative border-b border-black'>
                 {cover_image === undefined ?
                     <></>
                     :
@@ -68,7 +69,7 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
                         )
                     }
                     return (
-                        <div className="leading-[200%] font-light flex flex-col justify-center mx-40 text-lg text-center" key={idx}>
+                        <div className="leading-[200%] font-light flex justify-start text-lg mx-60 mb-12" key={idx}>
                             <p>{text}</p>
                         </div>
                     );
@@ -78,7 +79,7 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
                 <p className="text-center text-sm pb-6">{journal.title} - {date}</p>
             </div>
 
-            <Link href={`../photos/${journal_id}`}>
+            <Link href={`../../${journal.expand.creator.username}/photos/${journal_id}`}>
                 <div className='flex flex-row justify-center align-center absolute bottom-0 right-0 mr-6 pb-6 cursor-pointer'>
                     <p className="text-center text-2xl mr-2" >PHOTOS</p>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
