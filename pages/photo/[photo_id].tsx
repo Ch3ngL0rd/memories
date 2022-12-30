@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../../src/Navbar";
 import { pb, url } from "../../src/pocketbase_config";
+import { Image } from "../../src/interface";
 import { useRouter } from "next/router";
 import Balancer from 'react-wrap-balancer'
 import Link from "next/link";
@@ -83,8 +84,7 @@ export default function Photo({ photo }: { photo: Photo | null }) {
     )
 }
 
-export async function getServerSideProps(context: { params: { photo_id: string }; }) {
-    // Call an external API endpoint to get posts
+export async function getStaticProps(context: { params: { photo_id: string }; }) {
     try {
         const record = await pb.collection('photos').getOne(context.params.photo_id, {
             expand: "journal_id.creator"
@@ -100,6 +100,29 @@ export async function getServerSideProps(context: { params: { photo_id: string }
             props: {
                 photo: null
             }
+        }
+    }
+}
+
+// Returns all photo id's
+export async function getStaticPaths() {
+    try {
+        // you can also fetch all records at once via getFullList
+        const records = await pb.collection('photos').getFullList(200 /* batch size */, {
+            sort: '-created',
+            expand: "creator",
+        });
+        const images: Image[] = JSON.parse(JSON.stringify(records))
+        return {
+            paths: images.map((image: Image) => {
+                return `/photo/${image.id}`;
+            }),
+            fallback: false,
+        }
+    } catch {
+        return {
+            paths: [],
+            fallback: false,
         }
     }
 }

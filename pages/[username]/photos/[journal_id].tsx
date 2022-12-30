@@ -164,7 +164,7 @@ export default function Photo({ journal }: { journal: Journal | null }) {
     )
 }
 
-export async function getServerSideProps(context: { params: { journal_id: string, username: string }; }) {
+export async function getStaticProps(context: { params: { journal_id: string, username: string }; }) {
     // Call an external API endpoint to get posts
     try {
         const journal = await pb.collection('journal').getOne(context.params.journal_id, {
@@ -180,6 +180,29 @@ export async function getServerSideProps(context: { params: { journal_id: string
             props: {
                 journal: null
             }
+        }
+    }
+}
+
+// Returns all journal id's
+export async function getStaticPaths() {
+    try {
+        // you can also fetch all records at once via getFullList
+        const records = await pb.collection('journal').getFullList(200 /* batch size */, {
+            sort: '-created',
+            expand: "creator",
+        });
+        const journals: Journal[] = JSON.parse(JSON.stringify(records))
+        return {
+            paths: journals.map((journal: Journal) => {
+                return `/${journal.expand.creator.username}/photos/${journal.id}`;
+            }),
+            fallback: false,
+        }
+    } catch {
+        return {
+            paths: [],
+            fallback: false,
         }
     }
 }
