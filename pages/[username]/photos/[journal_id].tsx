@@ -75,6 +75,7 @@ export default function Photo({ journal }: { journal: Journal | null }) {
                         {images.map((image: Image, idx: number) => {
                             return (
                                 <img className="object-contain py-5 cursor-pointer"
+                                    loading={"eager"}
                                     onMouseEnter={(el) => handleHover(el.currentTarget, image)}
                                     onMouseLeave={handleExit}
                                     key={image.id}
@@ -134,6 +135,7 @@ export default function Photo({ journal }: { journal: Journal | null }) {
                                 .reduce((sum, x) => sum + x, 0) % 20;
                             return (
                                 <img
+                                    loading={"eager"}
                                     className="px-2 cursor-pointer"
                                     onMouseEnter={(el) => handleHover(el.currentTarget, image)}
                                     onMouseLeave={handleExit}

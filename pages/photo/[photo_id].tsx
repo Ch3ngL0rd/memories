@@ -29,7 +29,7 @@ export default function Photo({ photo }: { photo: Photo | null }) {
                     <Balancer>
                         <h1 className="text-3xl text-black font-light">
                             Sorry, we couldn&apos;t find your photo.
-                            <br/><br/>
+                            <br /><br />
                             Check that the link is correct and you have been given permissions to view the photo.
                         </h1>
                     </Balancer>
@@ -49,6 +49,7 @@ export default function Photo({ photo }: { photo: Photo | null }) {
         <>
             <div className="relative h-screen overflow-x-hidden">
                 <img className="h-[100%] object-contain w-full py-[2.5%]"
+                    loading={"eager"}
                     src={`${url}/api/files/${photo.collectionId}/${photo.id}/${photo.photo}`} />
                 <div className="flex flex-row justify-end align-center absolute right-0 bottom-0 mb-4 mr-4"
                     onMouseEnter={() => setHover(true)}

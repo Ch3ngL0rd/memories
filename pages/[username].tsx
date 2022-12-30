@@ -60,6 +60,7 @@ export default function Profile({ user, journals }: { user: User | null, journal
                     <div className="col-span-4 w-full h-screen flex flex-col justify-center items-center">
                         <img src={coverImage !== null ? `${url}/api/files/${coverImage?.collectionId}/${coverImage?.id}/${coverImage?.photo}` : ""}
                             className="fixed aspect-square h-1/2 object-cover"
+                            loading={"eager"}
                             style={{
                                 opacity: hover === true ? "1" : "0",
                                 transition: "all 0.5s ease-in-out",
