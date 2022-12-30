@@ -35,10 +35,6 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
         "en-US", { day: 'numeric', month: 'long', year: 'numeric' }
     );
 
-    if (images.length == 0) {
-
-    }
-
     return (
         <div className="relative font-primary">
             <div className='w-full h-screen relative border-b border-black'>
@@ -46,7 +42,6 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
                     <></>
                     :
                     <img className="absolute w-full object-cover h-full -z-50 top-0"
-                        loading={"eager"}
                         src={`${url}/api/files/${cover_image.collectionId}/${cover_image.id}/${cover_image.photo}`} />
                 }
                 <div className="absolute bottom-0 right-0 w-1/2 mb-8 mr-8">
@@ -71,7 +66,6 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
                             <div className="flex align-center justify-center h-[50vh] my-10 mx-40" key={images[idx].id}
                                 style={{ flexDirection: idx % 2 === 0 ? 'row-reverse' : "row" }}>
                                 <img
-                                    loading={"eager"}
                                     className="object-contain max-w-[40%]"
                                     src={`${url}/api/files/${images[idx].collectionId}/${images[idx].id}/${images[idx].photo}`} />
                                 <p className=" leading-[200%] font-light flex flex-col justify-center mx-10 text-lg">
@@ -103,7 +97,7 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
     )
 }
 
-export async function getServerSideProps(context: { params: { journal_id: string, username: string }; }) {
+export async function getStaticProps(context: { params: { journal_id: string, username: string }; }) {
     // Call an external API endpoint to get posts
     try {
         const journal = await pb.collection('journal').getOne(context.params.journal_id, {
@@ -127,6 +121,29 @@ export async function getServerSideProps(context: { params: { journal_id: string
             props: {
                 journal: null
             }
+        }
+    }
+}
+
+// Returns all journal id's
+export async function getStaticPaths() {
+    try {
+        // you can also fetch all records at once via getFullList
+        const records = await pb.collection('journal').getFullList(200 /* batch size */, {
+            sort: '-created',
+            expand: "creator",
+        });
+        const journals: Journal[] = JSON.parse(JSON.stringify(records))
+        return {
+            paths: journals.map((journal: Journal) => {
+                return `/${journal.expand.creator.username}/journal/${journal.id}`;
+            }),
+            fallback: false,
+        }
+    } catch {
+        return {
+            paths: [],
+            fallback: false,
         }
     }
 }

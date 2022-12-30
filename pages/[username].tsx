@@ -65,7 +65,7 @@ export default function Profile({ user, journals }: { user: User | null, journal
                                 opacity: hover === true ? "1" : "0",
                                 transition: "all 0.5s ease-in-out",
                                 visibility: coverImage !== null ? "visible" : "hidden",
-                            }} alt={""}/>
+                            }} alt={""} />
                     </div>
                     <div className="col-span-5 relative top-[5vw]">
                         {journals?.items.map((journal, idx) => {
@@ -103,20 +103,17 @@ export default function Profile({ user, journals }: { user: User | null, journal
     )
 }
 
-export async function getServerSideProps(context: { params: { username: string }; }) {
+export async function getStaticProps(context: { params: { username: string }; }) {
     // Call an external API endpoint to get posts
     try {
-        console.log(`Searching for ${context.params.username}`);
         const record = await pb.collection('users_view').getFirstListItem(`username="${context.params.username}"`, {
         });
-        console.log(record);
         // fetch a paginated records list
         const resultList = await pb.collection('journal').getList(1, 50, {
             expand: 'cover_image',
             filter: `creator = '${record.id}'`,
             sort: '-date'
         });
-        console.log(resultList);
         return {
             props: {
                 user: JSON.parse(JSON.stringify(record)),
@@ -130,6 +127,30 @@ export async function getServerSideProps(context: { params: { username: string }
                 user: null,
                 journals: null,
             }
+        }
+    }
+}
+
+
+
+// Returns all usernames
+export async function getStaticPaths() {
+    try {
+        const records = await pb.collection('users_view').getFullList(200 /* batch size */, {
+            sort: '-created',
+        });
+
+        const users: User[] = JSON.parse(JSON.stringify(records))
+        return {
+            paths: users.map((user: User) => {
+                return `/${user.username}`;
+            }),
+            fallback: false,
+        }
+    } catch {
+        return {
+            paths: [],
+            fallback: false,
         }
     }
 }

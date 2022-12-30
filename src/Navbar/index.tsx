@@ -37,7 +37,7 @@ export default function Navbar({ username }: { username: string | null }) {
             style={{ paddingTop: "2.5rem", paddingBottom: "2.5rem", borderRightWidth: '2px', maxWidth:"5vw"}}>
             <p className='cursor-pointer' onClick={handleBack} style={{transform:"rotate(-90deg)"}}>BACK</p>
             <p className='cursor-pointer' onClick={handleProfile} style={{transform:"rotate(-90deg)"}}>PROFILE</p>
-            <Link href={"../../../../"} style={{transform:"rotate(-90deg)"}}>
+            <Link href={"../../../../landing"} style={{transform:"rotate(-90deg)"}}>
                 <p>LANDING</p>
             </Link>
         </div>

@@ -5,9 +5,9 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 
-const outfit = Outfit({
-
-});
+const outfit = Outfit(
+  { subsets: ['latin'] }
+);
 
 
 export default function App({ Component, pageProps }: AppProps) {

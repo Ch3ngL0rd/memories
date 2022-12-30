@@ -118,7 +118,7 @@ export default function Index() {
                 </div>
             </div >
             <footer className="absolute bottom-5 right-10 flex justify-between w-40">
-                <Link href={"./"}>LANDING</Link>
+                <Link href={"./landing"}>LANDING</Link>
                 <Link href={"/about"}>ABOUT</Link>
             </footer>
         </div >
