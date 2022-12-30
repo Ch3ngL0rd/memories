@@ -61,7 +61,6 @@ export default function Photo({ journal }: { journal: Journal | null }) {
         }
     }
 
-    const breakpoint = Math.floor(journal.expand["photos(journal_id)"].length / 2);
     const images = journal.expand["photos(journal_id)"];
     const date = new Date(journal.date.split(" ")[0]).toLocaleDateString(
         "en-US", { day: 'numeric', month: 'long', year: 'numeric' }
@@ -72,23 +71,34 @@ export default function Photo({ journal }: { journal: Journal | null }) {
             <>
                 <Navbar username={journal.expand.creator.username} />
                 <div className="grid grid-cols-2 h-[100vh] w-[100vw] pl-[5vw] overflow-x-hidden font-primary">
-                    <div className="row-span-1 flex flex-col justify-center items-center w-full h-screen px-5 max-h-screen overflow-y-hidden">
+                    <div className="col-span-1 flex flex-col justify-start items-center w-full h-screen px-5 overflow-y-hidden">
                         {images.map((image: Image, idx: number) => {
                             return (
-                                <div className="py-5 px-5 relative flex justify-center items-center"
-                                    style={{ maxHeight: `${100 / images.length}%`, maxWidth: `80%` }}
-                                    key={image.id}>
-                                    <img className="object-contain"
-                                        ref={(el) => photoRefs.current[idx] = el!}
-                                        src={`http://127.0.0.1:8090/api/files/${image.collectionId}/${image.id}/${image.photo}`} />
-                                </div>
+                                <img className="object-contain py-5 cursor-pointer"
+                                    onMouseEnter={(el) => handleHover(el.currentTarget, image)}
+                                    onMouseLeave={handleExit}
+                                    key={image.id}
+                                    style={{ transition: 'all 0.5s ease-in-out', maxHeight: `${100 / images.length}%`, width: '100%' }}
+                                    ref={(el) => photoRefs.current[idx] = el!}
+                                    onClick={() => router.push(`../../../photo/${image.id}`)}
+                                    src={`http://127.0.0.1:8090/api/files/${image.collectionId}/${image.id}/${image.photo}`} />
                             )
                         })}
                     </div>
-                    <div className="row-span-1 flex flex-col justify-center items-end h-full mr-5">
-                        <h1 className="text-7xl font-light py-4 text-end" style={{ letterSpacing: '-0.05em' }}>{journal.title}</h1>
-                        <p className="text-2xl text-end">{date}</p>
-                        <p className="text-2xl text-end">{images.length} {images.length === 1 ? "Memory" : "Memories"}</p>
+                    <div className="col-span-1 flex flex-col justify-center items-end h-full mr-10">
+                        <h1 className="text-5xl py-4 text-end font-light"
+                            style={{ opacity: caption !== null ? "1" : "0", transition: "all 0.5s ease-in-out" }}>{caption}</h1>
+                        <div className="absolute"
+                            style={{ opacity: caption === null ? "1" : "0", transition: "all 0.5s ease-in-out" }}>
+                            <h1 className="text-7xl font-light py-4 text-end" style={{ letterSpacing: '-0.05em' }}>{journal.title}</h1>
+                            <p className="text-2xl text-end">{date}</p>
+                            <p className="text-2xl text-end">{images.length} {images.length === 1 ? "Memory" : "Memories"}</p>
+                        </div>
+                        <div className="absolute flex flex-col justify-end items-end h-full">
+                            <p className="mb-5 text-2xl underline text-end cursor-pointer"
+                                onClick={() => router.push(`../../${journal.expand.creator.username}/journal/${journal.id}`)}
+                                style={{ opacity: caption === null ? "1" : "0", transition: "all 0.5s ease-in-out" }}>Back to Journal</p>
+                        </div>
                     </div>
                 </div>
             </>
@@ -99,6 +109,11 @@ export default function Photo({ journal }: { journal: Journal | null }) {
         <>
             <Navbar username={journal.expand.creator.username} />
             <div className="grid grid-rows-3 h-screen w-[100vw] pl-[5vw] font-primary">
+                <div className="absolute flex flex-col justify-end items-start w-[95vw] h-full">
+                    <p className="mb-5 pl-5 text-2xl underline cursor-pointer"
+                        onClick={() => router.push(`../../${journal.expand.creator.username}/journal/${journal.id}`)}
+                        style={{ opacity: caption === null ? "1" : "0", transition: "all 0.5s ease-in-out" }}>Back to Journal</p>
+                </div>
                 <div className="absolute w-[90vw]">
                     <svg width={20} height={20} className="relative"
                         style={{ left: `${scrollPercent}%` }}>
@@ -111,7 +126,8 @@ export default function Photo({ journal }: { journal: Journal | null }) {
                     </svg>
                 </div>
                 <div className="row-span-2">
-                    <div ref={divRef} onScroll={scrollDot} className={`flex flex-row justify-start overflow-x-scroll mt-5 items-center relative ${styles.container} h-full`}>
+                    <div ref={divRef} onScroll={scrollDot}
+                        className={`flex flex-row justify-start overflow-x-scroll mt-5 items-center relative ${styles.container} h-full`}>
                         {images.map((image: Image, idx: number) => {
                             const randomHeight = 70 + Array.from(image.id)
                                 .map((letter) => letter.charCodeAt(0) ** 2)
@@ -129,12 +145,12 @@ export default function Photo({ journal }: { journal: Journal | null }) {
                         })}
                     </div>
                 </div>
-                <div className="row-span-1 flex flex-col justify-center items-end h-full">
-                    <div className="absolute flex flex-row w-full justify-center items-center"
+                <div className="row-span-1 flex flex-row justify-end items-end h-full">
+                    <div className="absolute flex flex-row w-full justify-center items-start pl-[5vw] mb-[20vh]"
                         style={{ opacity: caption !== null ? "1" : "0", transition: "all 0.5s ease-in-out" }}>
-                        <p className="text-2xl font-light text-center w-[50%] h-min py-5 px-5">{caption}</p>
+                        <p className="text-2xl font-light text-center w-[50%] h-min">{caption}</p>
                     </div>
-                    <div className="mr-5"
+                    <div className="mr-5 mb-5"
                         style={{ opacity: caption === null ? "1" : "0", transition: "all 0.5s ease-in-out" }}>
                         <h1 className="text-7xl py-4 text-end" style={{ letterSpacing: '-0.05em' }}>{journal.title}</h1>
                         <p className="text-2xl text-end">{date}</p>
