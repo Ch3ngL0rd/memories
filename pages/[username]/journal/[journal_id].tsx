@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import React from 'react';
 import Navbar from '../../../src/Navbar';
 import Link from 'next/link';
-import { pb } from '../../../src/pocketbase_config';
+import { pb, url } from '../../../src/pocketbase_config';
 import { Journal } from '../../../src/interface';
 
 export default function JournalPage({ journal }: { journal: Journal | null }) {
@@ -36,7 +36,7 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
                     <></>
                     :
                     <img className="absolute w-full object-cover h-full -z-50 top-0"
-                        src={`http://127.0.0.1:8090/api/files/${cover_image.collectionId}/${cover_image.id}/${cover_image.photo}`} />
+                        src={`${url}/api/files/${cover_image.collectionId}/${cover_image.id}/${cover_image.photo}`} />
                 }
                 <div className="absolute bottom-0 right-0 w-1/2 mb-8 mr-8">
                     <p className="text-2xl text-end text-white"
@@ -61,7 +61,7 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
                                 style={{ flexDirection: idx % 2 === 0 ? 'row-reverse' : "row" }}>
                                 <img
                                     className="object-contain max-w-[40%]"
-                                    src={`http://127.0.0.1:8090/api/files/${images[idx].collectionId}/${images[idx].id}/${images[idx].photo}`} />
+                                    src={`${url}/api/files/${images[idx].collectionId}/${images[idx].id}/${images[idx].photo}`} />
                                 <p className=" leading-[200%] font-light flex flex-col justify-center mx-10 text-lg">
                                     {text}
                                 </p>
