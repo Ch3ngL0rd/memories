@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../../src/Navbar";
 import { Journal, Image } from "../../../src/interface";
-import { pb } from "../../../src/pocketbase_config";
+import { pb, url } from "../../../src/pocketbase_config";
 import { useRouter } from "next/router";
 import styles from "../../../styles/Photos.module.css"
 import Link from "next/link";
@@ -81,7 +81,7 @@ export default function Photo({ journal }: { journal: Journal | null }) {
                                     style={{ transition: 'all 0.5s ease-in-out', maxHeight: `${100 / images.length}%`, width: '100%' }}
                                     ref={(el) => photoRefs.current[idx] = el!}
                                     onClick={() => router.push(`../../../photo/${image.id}`)}
-                                    src={`http://127.0.0.1:8090/api/files/${image.collectionId}/${image.id}/${image.photo}`} />
+                                    src={`${url}/api/files/${image.collectionId}/${image.id}/${image.photo}`} />
                             )
                         })}
                     </div>
@@ -140,7 +140,7 @@ export default function Photo({ journal }: { journal: Journal | null }) {
                                     onClick={() => router.push(`../../../photo/${image.id}`)}
                                     ref={(el) => photoRefs.current[idx] = el!}
                                     style={{ height: `${randomHeight}%`, transition: 'all 0.5s ease-in-out' }} key={image.id}
-                                    src={`http://127.0.0.1:8090/api/files/${image.collectionId}/${image.id}/${image.photo}`} />
+                                    src={`${url}/api/files/${image.collectionId}/${image.id}/${image.photo}`} />
                             )
                         })}
                     </div>

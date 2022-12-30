@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../src/Navbar";
 import { Journal, User, Image } from "../src/interface";
-import { pb } from "../src/pocketbase_config";
+import { pb, url } from "../src/pocketbase_config";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -27,10 +27,6 @@ export default function Profile({ user, journals }: { user: User | null, journal
             </>
         )
     }
-
-    React.useEffect(() => {
-        console.log(coverImage);
-    }, [coverImage])
 
     const handleHover = (element: HTMLDivElement) => {
         setHover(true);
@@ -62,7 +58,7 @@ export default function Profile({ user, journals }: { user: User | null, journal
                 style={{ marginLeft: "5vw", width: "95vw" }}>
                 <div className="grid grid-cols-9">
                     <div className="col-span-4 w-full h-screen flex flex-col justify-center items-center">
-                        <img src={coverImage !== null ? `http://127.0.0.1:8090/api/files/${coverImage?.collectionId}/${coverImage?.id}/${coverImage?.photo}` : ""}
+                        <img src={coverImage !== null ? `${url}/api/files/${coverImage?.collectionId}/${coverImage?.id}/${coverImage?.photo}` : ""}
                             className="fixed aspect-square h-1/2 object-cover"
                             style={{
                                 opacity: hover === true ? "1" : "0",
@@ -113,19 +109,22 @@ export async function getServerSideProps(context: { params: { username: string }
         console.log(`Searching for ${context.params.username}`);
         const record = await pb.collection('users_view').getFirstListItem(`username="${context.params.username}"`, {
         });
+        console.log(record);
         // fetch a paginated records list
         const resultList = await pb.collection('journal').getList(1, 50, {
             expand: 'cover_image',
             filter: `creator = '${record.id}'`,
             sort: '-date'
         });
+        console.log(resultList);
         return {
             props: {
                 user: JSON.parse(JSON.stringify(record)),
                 journals: JSON.parse(JSON.stringify(resultList)),
             }
         };
-    } catch {
+    } catch (err) {
+        console.log(err)
         return {
             props: {
                 user: null,

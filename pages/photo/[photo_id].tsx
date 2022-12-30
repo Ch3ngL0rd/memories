@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../../src/Navbar";
-import { pb } from "../../src/pocketbase_config";
+import { pb, url } from "../../src/pocketbase_config";
 import { useRouter } from "next/router";
 import Balancer from 'react-wrap-balancer'
 import Link from "next/link";
@@ -49,7 +49,7 @@ export default function Photo({ photo }: { photo: Photo | null }) {
         <>
             <div className="relative h-screen overflow-x-hidden">
                 <img className="h-[100%] object-contain w-full py-[2.5%]"
-                    src={`http://127.0.0.1:8090/api/files/${photo.collectionId}/${photo.id}/${photo.photo}`} />
+                    src={`${url}/api/files/${photo.collectionId}/${photo.id}/${photo.photo}`} />
                 <div className="flex flex-row justify-end align-center absolute right-0 bottom-0 mb-4 mr-4"
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}>
