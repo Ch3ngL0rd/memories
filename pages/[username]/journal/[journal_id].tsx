@@ -11,9 +11,19 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
 
     if (journal === null) {
         return (
-            <div>
-                <h1>Sorry, we couldn't find this file...</h1>
-            </div>
+            <>
+                <Navbar username={null} />
+                <div className="w-screen h-screen flex flex-col justify-center items-center">
+                    <h1 className="text-3xl text-black font-light">
+                        Sorry, we couldn&apos;t find your journal.
+                    </h1>
+                    <br /><br />
+                    <div className="cursor-pointer" onClick={router.back}>
+                        <h1
+                            className="text-3xl text-black font-light underline">Back</h1>
+                    </div>
+                </div>
+            </>
         )
     }
 

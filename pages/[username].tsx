@@ -64,7 +64,7 @@ export default function Profile({ user, journals }: { user: User | null, journal
                                 opacity: hover === true ? "1" : "0",
                                 transition: "all 0.5s ease-in-out",
                                 visibility: coverImage !== null ? "visible" : "hidden",
-                            }} />
+                            }} alt={""}/>
                     </div>
                     <div className="col-span-5 relative top-[5vw]">
                         {journals?.items.map((journal, idx) => {
@@ -72,10 +72,9 @@ export default function Profile({ user, journals }: { user: User | null, journal
                                 "en-US", { day: 'numeric', month: 'long', year: 'numeric' }
                             );
                             return (
-                                <Link href={`./${user.username}/journal/${journal.id}`}>
+                                <Link href={`./${user.username}/journal/${journal.id}`} key={idx}>
                                     <div
                                         className="text-end mr-4 pb-4"
-                                        key={idx}
                                         style={{ opacity: "0.3", transition: "opacity 0.4s ease-in-out" }}
                                         ref={(el) => divRefs.current[idx] = el!}
                                         onMouseEnter={(el) => {

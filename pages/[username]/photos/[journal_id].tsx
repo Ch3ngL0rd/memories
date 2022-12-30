@@ -21,7 +21,7 @@ export default function Photo({ journal }: { journal: Journal | null }) {
                 <Navbar username={null} />
                 <div className="w-screen h-screen flex flex-col justify-center items-center">
                     <h1 className="text-3xl text-black font-light">
-                        Sorry, we couldn't find any photos.
+                        Sorry, we couldn&apos;t find any photos.
                     </h1>
                     <br /><br />
                     <div className="cursor-pointer" onClick={router.back}>

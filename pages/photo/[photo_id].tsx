@@ -28,7 +28,7 @@ export default function Photo({ photo }: { photo: Photo | null }) {
                 <div className="w-screen h-screen flex flex-col justify-center items-center">
                     <Balancer>
                         <h1 className="text-3xl text-black font-light">
-                            Sorry, we couldn't find your photo.
+                            Sorry, we couldn&apos;t find your photo.
                             <br/><br/>
                             Check that the link is correct and you have been given permissions to view the photo.
                         </h1>
@@ -69,7 +69,7 @@ export default function Photo({ photo }: { photo: Photo | null }) {
                             <h1 className="text-3xl text-end text-black font-medium">{photo.caption}</h1>
                         </Balancer>
                         <Link href={journal_route}>
-                            <p className="text-2xl text-end text-black font-light underline">"{photo.expand.journal_id.title}"</p>
+                            <p className="text-2xl text-end text-black font-light underline">&quot;{photo.expand.journal_id.title}&quot;</p>
                         </Link>
                         <p className="text-2xl text-end text-black font-light">by {username}</p>
                     </div>
