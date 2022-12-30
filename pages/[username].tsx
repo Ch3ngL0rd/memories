@@ -19,7 +19,10 @@ export default function Profile({ user, journals }: { user: User | null, journal
                 <div className="flex flex-col justify-center items-center h-screen w-full font-primary text-4xl text-center">
                     <p>SORRY<br />{username} NOT FOUND</p>
                     <br />
-                    <Link href={"./landing"} className="underline">LANDING</Link>
+                    <div className="cursor-pointer" onClick={router.back}>
+                        <h1
+                            className="text-3xl text-black font-light underline">Back</h1>
+                    </div>
                 </div>
             </>
         )
