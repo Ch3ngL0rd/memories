@@ -45,9 +45,9 @@ export default function Landing() {
             <div className="col-span-7 flex flex-row justify-center h-screen"
                 onMouseLeave={handleHoverExit}>
                 <div
-                    className="flex flex-col w-full items-end relative top-[-10rem]"
+                    className="flex flex-col w-full items-end relative justify-center"
                 >
-                    {posts.slice(0, 4).map((currentPost, idx) => {
+                    {posts.slice(0, 3).map((currentPost, idx) => {
                         const randomWidth = 60 + ((seed + idx * idx ** 2) ** 2) % 30;
                         return (
                             <Link className="relative flex flex-row justify-end" key={currentPost.title}
@@ -68,14 +68,14 @@ export default function Landing() {
                             </Link>)
                     })}
                 </div>
-                <div className="flex flex-col w-full items-start">
-                    {posts.slice(4,).map((currentPost, idx) => {
+                <div className="flex flex-col w-full items-start justify-center">
+                    {posts.slice(3,).map((currentPost, idx) => {
                         const randomWidth = 60 + ((seed + idx * idx ** 2) ** 2) % 30;
                         return (
                             <Link className="relative flex flex-row justify-start" key={currentPost.title}
                                 href={`xX_Ch3ngL0rd_Xx/journal/${currentPost.journal_id}`}>
                                 <img
-                                    ref={(el) => photoRefs.current[idx + 4] = el!}
+                                    ref={(el) => photoRefs.current[idx + 3] = el!}
                                     onMouseEnter={(el) => handleHover(el.currentTarget, currentPost)}
                                     src={`${currentPost.image}.jpg`} className={`object-cover py-1 px-1`}
                                     style={{ width: `${randomWidth}%` }}

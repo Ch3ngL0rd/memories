@@ -1,6 +1,8 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Outfit } from '@next/font/google'
+import React from 'react';
+import { useRouter } from 'next/router';
 
 
 const outfit = Outfit({
@@ -9,6 +11,21 @@ const outfit = Outfit({
 
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+
+  React.useEffect(() => {
+    const checkWindow = () => {
+      if (typeof window !== 'undefined') {
+        if (window.innerWidth < 1000) {
+          router.push("../../../mobile");
+        }
+      }
+    }
+
+    checkWindow();
+  }, []);
+
+
   return (
     <>
       <style jsx global>

@@ -2,15 +2,6 @@ import { Post } from "./interface";
 
 const posts: Post[] = [
     {
-        event: "Clubbing w/ MSU?",
-        date: new Date("12/23/2022"),
-        title: "Double Danger",
-        entry: "Two Zacs having fun at the clubs",
-        image: "/doubletrouble",
-        caption: "I have no clue where this is",
-        journal_id: "s9wq0rat97eo3kh"
-    } as Post,
-    {
         event: "MSU Ball",
         date: new Date("10/19/2022"),
         title: "MSU Ball",
