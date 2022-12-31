@@ -51,7 +51,7 @@ const posts: Post[] = [
         date: new Date("9/5/2020"),
         title: "Clarinet Rectical",
         entry: "Me at my clarinet recital! Man, it was such a nerve-wracking experience, but so amazing. I'll never forget the feeling of performing in front of all those people. And a big shout out to my clarinet teacher, Mrs Bex, for helping me get to that point. It truly was a once in a lifetime experience.",
-        image: "/warrior",
+        image: "/nunchucks",
         caption: "Watch out for my nun-chucks",
         journal_id: "fcn2qzyl6valu5t"
     } as Post,
