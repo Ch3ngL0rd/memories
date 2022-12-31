@@ -26,7 +26,7 @@ const posts: Post[] = [
         entry: "That night our whole family went clubbing together (except for my sister who is still 17). Such a fun night and this photo captures it perfectly. Counting down the days until you turn 18! Can't wait for you to join us on these kinds of outings.",
         image: "/awnoemily",
         caption: "Say Cheese!",
-        journal_id: "s9wq0rat97eo3kh"
+        journal_id: "mkn4t5uhh1w350w"
     } as Post,
     {
         event: "ChengCraft",
