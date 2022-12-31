@@ -57,12 +57,12 @@ export default function Profile({ user, journals }: { user: User | null, journal
             <Head>
                 <title>{user.name} @ {user.username}</title>
             </Head>
-            <div className="absolute flex flex-row justify-between px-4 py-4 font-primary ml-[5vw] w-[95vw] h-[5vw] top-0">
+            <div className="absolute flex flex-row justify-between pl-4 py-4 font-primary ml-[5vw] w-[93vw] h-[5vw] top-0">
                 <p>JOURNAL ENTRIES</p>
                 <p className="text-end">{user.name.toUpperCase()}<br />{user.username.toUpperCase()}</p>
             </div>
             <div className="font-primary flex flex-col items-end"
-                style={{ marginLeft: "5vw", width: "95vw" }}>
+                style={{ marginLeft: "5vw", width: "93vw" }}>
                 <div className="grid grid-cols-9">
                     <div className="col-span-4 w-full h-screen flex flex-col justify-center items-center">
                         <img src={coverImage !== null ? `${url}/api/files/${coverImage?.collectionId}/${coverImage?.id}/${coverImage?.photo}` : ""}
@@ -82,7 +82,7 @@ export default function Profile({ user, journals }: { user: User | null, journal
                             return (
                                 <Link href={`./${user.username}/journal/${journal.id}`} key={idx}>
                                     <div
-                                        className="text-end mr-4 pb-4"
+                                        className="text-end pb-4"
                                         style={{ opacity: "0.3", transition: "opacity 0.4s ease-in-out" }}
                                         ref={(el) => divRefs.current[idx] = el!}
                                         onMouseEnter={(el) => {
@@ -92,8 +92,7 @@ export default function Profile({ user, journals }: { user: User | null, journal
                                             } else {
                                                 setCoverImage(null);
                                             }
-                                        }
-                                        }
+                                        }}
                                         onMouseLeave={handleExit}
                                     >
                                         <p className="text-7xl" style={{ color: "#393939" }}>{journal.title.toUpperCase()}</p>
