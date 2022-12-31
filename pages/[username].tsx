@@ -4,6 +4,7 @@ import { Journal, User, Image } from "../src/interface";
 import { pb, url } from "../src/pocketbase_config";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 export default function Profile({ user, journals }: { user: User | null, journals: { items: Journal[] } | null }) {
     const divRefs = React.useRef<HTMLDivElement[]>([]);
@@ -16,6 +17,9 @@ export default function Profile({ user, journals }: { user: User | null, journal
         return (
             <>
                 <Navbar username={null} />
+                <Head>
+                    <title>404 Not Found</title>
+                </Head>
                 <div className="flex flex-col justify-center items-center h-screen w-full font-primary text-4xl text-center">
                     <p>SORRY<br />{username} NOT FOUND</p>
                     <br />
@@ -50,6 +54,9 @@ export default function Profile({ user, journals }: { user: User | null, journal
     return (
         <>
             <Navbar username={user.username} />
+            <Head>
+                <title>{user.name} @ {user.username}</title>
+            </Head>
             <div className="absolute flex flex-row justify-between px-4 py-4 font-primary ml-[5vw] w-[95vw] h-[5vw] top-0">
                 <p>JOURNAL ENTRIES</p>
                 <p className="text-end">{user.name.toUpperCase()}<br />{user.username.toUpperCase()}</p>

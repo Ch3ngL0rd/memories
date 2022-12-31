@@ -4,6 +4,7 @@ import Navbar from '../../../src/Navbar';
 import Link from 'next/link';
 import { pb, url } from '../../../src/pocketbase_config';
 import { Journal } from '../../../src/interface';
+import Head from 'next/head';
 
 export default function JournalPage({ journal }: { journal: Journal | null }) {
     const router = useRouter()
@@ -13,6 +14,9 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
         return (
             <>
                 <Navbar username={null} />
+                <Head>
+                    <title>404 Not Found</title>
+                </Head>
                 <div className="w-screen h-screen flex flex-col justify-center items-center">
                     <h1 className="text-3xl text-black font-light">
                         Sorry, we couldn&apos;t find your journal.
@@ -37,6 +41,9 @@ export default function JournalPage({ journal }: { journal: Journal | null }) {
 
     return (
         <div className="relative font-primary">
+            <Head>
+                <title>{journal.title}</title>
+            </Head>
             <div className='w-full h-screen relative border-b border-black'>
                 {cover_image === undefined ?
                     <></>

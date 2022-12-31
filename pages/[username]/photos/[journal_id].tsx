@@ -5,6 +5,7 @@ import { pb, url } from "../../../src/pocketbase_config";
 import { useRouter } from "next/router";
 import styles from "../../../styles/Photos.module.css"
 import Link from "next/link";
+import Head from "next/head";
 
 export default function Photo({ journal }: { journal: Journal | null }) {
     const router = useRouter()
@@ -19,6 +20,9 @@ export default function Photo({ journal }: { journal: Journal | null }) {
         return (
             <>
                 <Navbar username={null} />
+                <Head>
+                    <title>404 Not Found</title>
+                </Head>
                 <div className="w-screen h-screen flex flex-col justify-center items-center">
                     <h1 className="text-3xl text-black font-light">
                         Sorry, we couldn&apos;t find any photos.
@@ -70,6 +74,9 @@ export default function Photo({ journal }: { journal: Journal | null }) {
         return (
             <>
                 <Navbar username={journal.expand.creator.username} />
+                <Head>
+                    <title>{journal.title}</title>
+                </Head>
                 <div className="grid grid-cols-2 h-[100vh] w-[100vw] pl-[5vw] overflow-x-hidden font-primary">
                     <div className="col-span-1 flex flex-col justify-start items-center w-full h-screen px-5 overflow-y-hidden">
                         {images.map((image: Image, idx: number) => {
@@ -108,6 +115,9 @@ export default function Photo({ journal }: { journal: Journal | null }) {
 
     return (
         <>
+            <Head>
+                <title>{journal.title}</title>
+            </Head>
             <Navbar username={journal.expand.creator.username} />
             <div className="grid grid-rows-3 h-screen w-[100vw] pl-[5vw] font-primary">
                 <div className="absolute flex flex-col justify-end items-start w-[95vw] h-full">

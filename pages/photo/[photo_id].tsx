@@ -5,6 +5,7 @@ import { Image } from "../../src/interface";
 import { useRouter } from "next/router";
 import Balancer from 'react-wrap-balancer'
 import Link from "next/link";
+import Head from "next/head";
 
 interface Photo {
     caption: string,
@@ -26,6 +27,9 @@ export default function Photo({ photo }: { photo: Photo | null }) {
         return (
             <>
                 <Navbar username={null} />
+                <Head>
+                    <title>404 Not Found</title>
+                </Head>
                 <div className="w-screen h-screen flex flex-col justify-center items-center">
                     <Balancer>
                         <h1 className="text-3xl text-black font-light">
@@ -48,6 +52,9 @@ export default function Photo({ photo }: { photo: Photo | null }) {
     const journal_route = `../../../../${username}/journal/${photo.expand.journal_id.id}`;
     return (
         <>
+            <Head>
+                <title>{photo.expand.journal_id.title}</title>
+            </Head>
             <div className="relative h-screen overflow-x-hidden">
                 <img className="h-[100%] object-contain w-full py-[2.5%]"
                     loading={"eager"}
