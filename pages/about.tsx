@@ -30,7 +30,7 @@ export default function About() {
                 </div>
             </div>
             <footer className="fixed bottom-5 right-10 flex justify-between w-40">
-                <Link href={"./"}>LANDING</Link>
+                <Link href={"/"}>LANDING</Link>
                 <Link href={"/about"}>ABOUT</Link>
             </footer>
         </div >
