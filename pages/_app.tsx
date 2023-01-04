@@ -13,17 +13,17 @@ const outfit = Outfit(
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
-  // React.useEffect(() => {
-  //   const checkWindow = () => {
-  //     if (typeof window !== 'undefined') {
-  //       if (window.innerWidth < 1000) {
-  //         router.push("../../../mobile");
-  //       }
-  //     }
-  //   }
+  React.useEffect(() => {
+    const checkWindow = () => {
+      if (typeof window !== 'undefined') {
+        if (window.innerWidth < 1000) {
+          router.push("../../../mobile");
+        }
+      }
+    }
 
-  //   checkWindow();
-  // }, [router]);
+    checkWindow();
+  }, [router]);
 
 
   return (
