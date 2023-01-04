@@ -74,7 +74,7 @@ export default function Login() {
                         </button>
                     </form>
                     <div className="flex flex-row justify-between items-center text-sm">
-                        <p className="opacity-60">Don't have an account yet?</p>
+                        <p className="opacity-60">Don&apos;t have an account yet?</p>
                         <Link href={"./signup"}>
                             <p className="underline">Sign up for free</p>
                         </Link>
