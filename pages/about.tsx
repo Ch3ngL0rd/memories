@@ -34,8 +34,9 @@ export default function About() {
                         </div>
                     </div>
                 </div>
-                <footer className="fixed bottom-5 right-10 flex justify-between w-40">
+                <footer className="absolute bottom-5 right-10 flex justify-between w-80">
                     <Link href={"/"}>LANDING</Link>
+                    <Link href={"/xX_Ch3ngL0rd_Xx"}>JOURNAL</Link>
                     <Link href={"/about"}>ABOUT</Link>
                 </footer>
             </div >
