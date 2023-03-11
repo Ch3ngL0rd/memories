@@ -119,11 +119,13 @@ export default function Index() {
                             }}>
                             <h1 className="xl:text-7xl md:text-6xl text-end font-light" style={{ lineHeight: 1.25 }}> Memory<br />of<br />Yesterday</h1>
                             <p className="text-base text-end mt-6 font-light">dedicated to my friends & family<br />by zachary cheng</p>
+                            <p className="text-base text-end mt-6 font-light">hover over a photo to see a memory!</p>
                         </div>
                     </div>
                 </div >
-                <footer className="absolute bottom-5 right-10 flex justify-between w-40">
+                <footer className="absolute bottom-5 right-10 flex justify-between w-80">
                     <Link href={"/"}>LANDING</Link>
+                    <Link href={"/xX_Ch3ngL0rd_Xx"}>JOURNAL</Link>
                     <Link href={"/about"}>ABOUT</Link>
                 </footer>
             </div >
